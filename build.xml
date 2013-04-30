@@ -1,0 +1,24 @@
+<project>
+
+    <target name="clean">
+    </target>
+
+    <target name="compile">
+        <mkdir dir="bin/com/laquysoft/uriexplained/UriComponentsVisualizer"/>
+        <javac srcdir="src" destdir="bin/com/laquysoft/uriexplained/UriComponentsVisualizer"/>
+    </target>
+
+    <target name="jar">
+        <mkdir dir="."/>
+        <jar destfile="UriComponentsVisualizer.jar" basedir="bin/com/laquysoft/uriexplained/UriComponentsVisualizer">
+            <manifest>
+                <attribute name="Main-Class" value="com.laquysoft.uriexplained.UriComponentsVisualizer"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run">
+        <java jar="UriComponentsVisualizer.jar" fork="true"/>
+    </target>
+
+</project>
