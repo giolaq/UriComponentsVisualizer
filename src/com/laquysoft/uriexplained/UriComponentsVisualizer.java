@@ -113,7 +113,7 @@ public class UriComponentsVisualizer extends JFrame {
 					try {
 
 
-						URI uri = new URI(uriText);
+						URI uri = new URI(uriText.trim());
 						schemeTf.setText(uri.getScheme());
 						authorityTf.setText(uri.getAuthority());
 						pathTf.setText(uri.getPath());
