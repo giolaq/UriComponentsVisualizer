@@ -2,9 +2,8 @@ package com.laquysoft.uriexplained;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
-import java.net.URL;
+
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -113,8 +112,8 @@ public class UriComponentsVisualizer extends JFrame {
 				{
 					try {
 
-						URL url = new URL(uriText);
-						URI uri = new URI(url.getProtocol(), url.getAuthority(), url.getPath(), url.getQuery(), url.getRef());
+
+						URI uri = new URI(uriText);
 						schemeTf.setText(uri.getScheme());
 						authorityTf.setText(uri.getAuthority());
 						pathTf.setText(uri.getPath());
@@ -123,9 +122,7 @@ public class UriComponentsVisualizer extends JFrame {
 
 					} catch (URISyntaxException e1) {
 						e1.printStackTrace();
-					} catch (MalformedURLException e1) {
-						e1.printStackTrace();
-					}
+					} 
 				}
 
 			}
