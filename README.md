@@ -17,7 +17,9 @@ Running
 	ant run;
 
 Fill URI text field with your URI
+
 Press Enter
+
 URI components will be displayed into respective fields.
 
 
