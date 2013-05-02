@@ -2,13 +2,13 @@ package com.laquysoft.uriexplained;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URISyntaxException;
 
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
 public class UriComponentsVisualizer extends JFrame {
 
@@ -53,11 +53,18 @@ public class UriComponentsVisualizer extends JFrame {
 		fragmentLabel = new JLabel("Fragment");
 
 		uriTf = new JTextField(20);
+
 		schemeTf = new JTextField(30);
 		authorityTf = new JTextField(30);
 		pathTf = new JTextField(30);
 		queryTf = new JTextField(30);
 		fragmentTf = new JTextField(30);
+
+		schemeTf.setEditable(false);
+		authorityTf.setEditable(false);
+		pathTf.setEditable(false);
+		queryTf.setEditable(false);
+		fragmentTf.setEditable(false);
 
 		GroupLayout layout = new GroupLayout(panel);
 		panel.setLayout(layout);
@@ -110,19 +117,22 @@ public class UriComponentsVisualizer extends JFrame {
 				queryTf.setText("");
 				if ( uriText != null )
 				{
-					try {
-
-
-						URI uri = new URI(uriText.trim());
+					try
+					{
+						URI uri =  new URI(uriText.trim());
 						schemeTf.setText(uri.getScheme());
 						authorityTf.setText(uri.getAuthority());
-						pathTf.setText(uri.getPath());
+						if ( uri.isOpaque() )
+							pathTf.setText(uri.getSchemeSpecificPart());
+						else
+							pathTf.setText(uri.getPath());
 						fragmentTf.setText(uri.getFragment());
-						queryTf.setText(uri.getQuery());
+						queryTf.setText(uri.getQuery()); 
+					}
+					catch (URISyntaxException exc) {
+						System.out.println("URI " + uriText + " is a malformed URL");
+					}
 
-					} catch (URISyntaxException e1) {
-						e1.printStackTrace();
-					} 
 				}
 
 			}
